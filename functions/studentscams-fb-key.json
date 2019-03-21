@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "studentscams-8639d",
+  "private_key_id": "d85017bdf23c407fe27da9eb7510fe8fdfe1d054",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDXwTWdMwH9t+Ax\n3wclf/M0t8I4r3N45R8DmmTj7NKxY6GAaPzm2qYn/r1UO+MjdhQ96AVfr1TERJgF\nHAGc+MPSkLm4vt545lJUpdiof9m2QPCO9JNNqw2xG+3gpfUVDyuFxOSLGUoOZeau\ngSmb/+Pdzhs2PpO6R8j9/cbm2CLrkRn6r17v68KWYa1NexaUeqpyBsB0uqfiSRmT\nUyUyi5VaPqqqDRBl0HaJOOeUyg2Rx8I7iGU82H1BHxh/4vexdXz/iT7/28bPPW3F\nY9XxEkmNpdbXp8LtA/N+Dz7K5DDFaDPVUY3LGxoQQnNx7IqsdFq0eD2rDpt6Ty7d\ngE6b+jPpAgMBAAECggEAEX7y/JDu1+bJ0PF/kFxsWfmOz+72Y7bcyXuDM/J38Xed\nWJ7q50OS1spzCvoiRLVmFdETYnuC2bmgREXNoa+QnaorzV35B3/R7FhYle1sN7nT\naBxQN6un3BViOGXs1mzZACuDxv3hggJkbwE9YQ+iqFF25nKzoxcAJwylzQF473Y6\nJ84j6IVf4oR3eqcBswfBF70Rv7YSEOSfykoAsIJzywhiGX0VyxpYwVvv5+zGpzkL\nG/lld1XIuCZinUYw9YdwUfhWIaHrT73V1DYnzgnwUNJTbVZ48Z0/90NPtseEQG/v\nzv6TuI4YqZbncAxtswfcwPQOI5zVFJ0Um1gLIs+uywKBgQD14ybZOA9ZTCFl/+63\nJTlC4xgxnbJdoRUjsutKfuLVCEHTXeDUe6FgeF3HONhhKOXaPH/VXRNVz7pQBUwA\nSo8zoxkHqkAqz23ivMbnYngRnZ4O1Bd5aeTkOX+i5cqLFzQqMXppmvK2J0lJl3bT\nXrMuoXndZH+uwxLCiDvxqYAz+wKBgQDgoM3H2RWwqMSaGgHLZ/W/WUM3r854+0A1\n/sNIPXFjpEcc6NZPICbbHqvoLOWs5DZnmRTGqAyiySFnjY3TsoHoR1URQediNiO3\nimJO3SHM3fW0nhkf9hgSNKCdNxlCpR03nyY57jjB9AZu2/vPRTOP/OSNbVABVc3i\n4iIdd0pOawKBgHJHV1ffeSq8ek1IrK7MCxfuKeFtdGeVpRiJYFeoL05pXwaYfBTl\nPLR0XMlpvw8xDdrnAVatwn3AZMwqGg+Ml4+dPtXUJ6x96YlWyW7i0gEF617i7eIM\n+Eel/Y89E2yfpSvzAPyx+hn0mlgsoBpOyiJjBBuESN91ZHOrE4kWiTIfAoGBAL8I\nIllehjK6JJEFoxcQb49u41pdelOrIV2KLxulnWPnFs9AONoL9t+Mwxft7tnNL3OF\nXYTg7/YU5QLDAKXT/uTCnVbS3GvKrS9vUdHN/+vRrB8SAT4MNUZuWVW6wRHLiACA\nqarErKJN3Ja1IP6R1JsUsG6SU2L/TNwyAl9azufHAoGAKw0oed1hCXdfiL4AHtTS\nSLJKJCUomWsuTTY6Xxa79MKBt/5yj1NvJ9HmA6ov8YymSBg8y8ma0Ymdlj+G++Mx\nGzTJ5XOU31RFbSWk5j9ZWxo3xtHuRS542q88k9zF9MQw4kvkSLO7nVci6e5F4QBZ\nFdQNYMVfWjl9S4vvpKRTrFs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-k6qxg@studentscams-8639d.iam.gserviceaccount.com",
+  "client_id": "112792441745717766410",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-k6qxg%40studentscams-8639d.iam.gserviceaccount.com"
+}

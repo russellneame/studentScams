@@ -1,0 +1,196 @@
+#create-post {
+  z-index: 1001;
+  position: fixed;
+  width: 100%;
+  min-height: calc(100vh - 56px);
+  overflow-y: scroll;
+  bottom: 0;
+  top: 56px;
+  background: white;
+  text-align: center;
+  display: none;
+  transform: translateY(100vh);
+  transition: transform 0.5s;
+}
+
+#create-post video, #create-post canvas {
+  width: 512px;
+  max-width: 100%;
+  display: none;
+  margin: auto;
+}
+
+#create-post #pick_image{
+  
+}
+
+
+#upload-img{
+  margin: 10px auto;
+  font-size: 10px;
+
+}
+
+#create-post #capture-btn{
+  
+  display: inline-block;
+
+}
+
+
+#create-post #camera-switch{
+  margin: 10px auto;
+
+
+}
+
+#camera-switch2{
+  display:none;
+  margin: 10px auto;
+
+}
+
+.bg-modal{
+  z-index: 1002;
+  width: 100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content{
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  border-radius: 4px;
+  position: relative;
+
+}
+
+.close{
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 30px;
+  margin-top: 10px;
+  cursor: pointer;
+
+}
+
+
+
+#sign-up {
+  z-index: 1001;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: scroll;
+  bottom: 0;
+  top: 56px;
+  background: white;
+  text-align: center;
+  display: none;
+   transform: translateY(100vh);
+  transition: transform 0.5s;
+}
+
+#signUpProgressBar {
+  margin: auto;
+  text-align: center;
+  display: none;
+}
+
+#loginProgressBar {
+  margin: auto;
+  text-align: center;
+  display: none;
+}
+
+.login-btn{
+  color: yellow;
+}
+
+#log_in {
+  z-index: 1001;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: scroll;
+  bottom: 0;
+  top: 56px;
+  background: white;
+  text-align: center;
+  display: none;
+  transform: translateY(100vh);
+  transition: transform 0.5s;
+}
+
+
+
+.main-image {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
+.floating-button {
+  z-index: 1000;
+  text-align: center;
+  margin:  auto;
+  display: block;
+  padding: 30px;
+}
+
+.input-section {
+  display: block;
+  margin: 10px auto;
+}
+
+.shared-moment-card.mdl-card {
+  margin: 10px auto;
+  width:270px;
+}
+
+.deletePost{
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media(min-width: 600px){
+  .shared-moment-card.mdl-card {
+    width:60%;
+
+}
+}
+
+@media(min-width: 1000px){
+  .shared-moment-card.mdl-card {
+    width:45%;
+
+}
+}
+
+.shared-moment-card .mdl-card__title {
+    height:150px;
+}
+
+@media(min-height: 700px){
+  .shared-moment-card .mdl-card__title {
+    height:170px;
+}
+}
+
+@media(min-height: 1000px){
+  .shared-moment-card .mdl-card__title {
+    height:200px;
+}
+}

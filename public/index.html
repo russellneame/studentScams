@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>StudentScams</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css">
+  <link rel="stylesheet" href="/src/css/app.css">
+  <link rel="stylesheet" href="/src/css/feed.css">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- These meta / link tags help safari / IOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="StudentScams">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-57x57.png" sizes="57x57">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-60x60.png" sizes="60x60">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-72x72.png" sizes="72x72">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-76x76.png" sizes="76x76">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-114x114.png" sizes="114x114">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-120x120.png" sizes="120x120">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-144x144.png" sizes="144x144">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-152x152.png" sizes="152x152">
+  <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-180x180.png" sizes="180x180">
+
+   <!-- Internet explorer -->
+  <meta name="msapplication-TileImage" content="/src/images/icons/app_icon_144x144.png">
+  <meta name="msapplication-TileColor" content="#fff">
+  <meta name="theme-color" content="#0095fb">
+</head>
+<body>
+
+<div id="app">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title"> <img src="/src/images/logo.png"
+           alt="StudentScams"
+           class="main-image"></span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link nav_bar_show always_show" style="display: none;"  href="/">Posts <i class="material-icons">home</i></a>
+          <a class="mdl-navigation__link nav_bar_show always_show" style="display: none;" href="/about">About <i class="material-icons">info</i></a>
+          <a class="mdl-navigation__link log_in_button logged_out" style="display: none;">Log In <i class="material-icons">account_circle</i></a>
+          <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
+        <a class="mdl-navigation__link sign_up_button logged_out" style="display: none;">Sign up <i class="material-icons">account_box</i> </a>
+        
+          <div class="drawer-option">
+            <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+              Enable Notifications <i class="material-icons">notification_important</i>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title"> <img src="/src/images/logo.png"
+           alt="studentScams"
+           class="main-image"></span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/">Posts <i class="material-icons">home</i></a>
+        <a class="mdl-navigation__link" href="/about">About <i class="material-icons">info</i></a>
+        <a class="mdl-navigation__link log_in_button logged_out close_drawer"  style="display: none;">Log In <i class="material-icons">account_circle</i></a>
+        <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
+        <a class="mdl-navigation__link sign_up_button logged_out close_drawer" style="display: none;">Sign up <i class="material-icons">account_box</i></a>
+        <div class="drawer-option">
+          <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+            <i class="material-icons">notification_important</i> Enable Notifications 
+          </button>
+        </div>
+      </nav>
+     
+    </div>
+    <main class="mdl-layout__content mat-typography">
+
+      <!-- Create Sign up pop up form  -->
+      <div id="sign-up">
+        <h3>Create an account!</h3>
+        <form id='signup_form'>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="signUpEmail">
+            <label class="mdl-textfield__label" for="email" name="email">Email</label>
+          </div>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="manual-location">
+            <input class="mdl-textfield__input" type="password" id="signUpPassword">
+            <label class="mdl-textfield__label" for="password" name="password">Password</label>
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+                    type="submit" id="signup_btn">Sign up!
+
+            </button>
+            <div  id='signUpProgressBar'class="mdl-spinner mdl-js-spinner is-active"></div>
+           
+          
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--fab" id="close-sign-up-modal-btn" type="button">
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+       <!-- Create Log in form  -->
+      <div id="log_in">
+        <h3>Log In!</h3>
+        <form id='login_form'>
+          <div id='login_msg' style='display: none;'></div>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="logInEmail">
+            <label class="mdl-textfield__label" for="email" name="email">Email</label>
+          </div>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="manual-location">
+            <input class="mdl-textfield__input" type="password" id="logInPassword">
+            <label class="mdl-textfield__label" for="password" name="password">Password</label>
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+                    type="submit" id="login-btn">Log in!
+            </button>
+            <div  id='loginProgressBar'class="mdl-spinner mdl-js-spinner is-active"></div>
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--fab" id="close-log-in-modal-btn" type="button">
+              <i class="material-icons">close</i>
+            </button>
+
+          </div>
+        </form>
+      </div>
+
+
+      <!-- Create post pop up form  -->
+      <div id="create-post">
+        <h3>Post your own scam experience </h3>
+        <video id='player' autoplay playsinline></video>
+        <canvas id='canvas' width='320px' height='240px'></canvas>
+        <button class='mdl-button mdl-js-button mdl-button-raised mdl-button--colored' id='capture-btn'>Capture <i class="material-icons">photo_camera</i> </button>
+        <button class='mdl-button mdl-js-button mdl-button-raised mdl-button--colored' id='camera-switch'>switch camera </button>
+         <button class='mdl-button mdl-js-button mdl-button-raised mdl-button--colored' id='camera-switch2'>switch camera 2 </button>
+        <div id='pick_image'>
+            <button class='mdl-button mdl-js-button mdl-button-raised mdl-button--colored' id='upload-img'>Upload image instead <i class="material-icons">computer</i> </button>
+            <input type='file' accept='image/*' id='image-picker'> 
+         </div>
+        <form id='create_post_form'>
+          
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="title">
+            <label class="mdl-textfield__label" for="title" name="title">Post title:</label>
+          </div>
+           <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="content">
+            <label class="mdl-textfield__label" for="title" name="content">Post content:</label>
+          </div>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="manual-location">
+            <input class="mdl-textfield__input" type="text" id="location">
+            <label class="mdl-textfield__label" for="location" name="location">Location</label>
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+                    type="submit" id="post-btn">Post!
+            </button>
+          </div>
+          <br>
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--fab" id="close-create-post-modal-btn" type="button">
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+        </form>
+      </div>
+        <img src="/src/images/logo.png"
+           alt="Explore the City"
+           class="main-image">
+  
+      <div class="page-content">
+        <h5 class="text-center mdl-color-text--primary">Share your own scam experiences / stories</h5>
+        <div class="floating-button">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+                id="share-image-button">
+          <i class="material-icons">add</i>
+        </button>
+      </div>
+        <div id="shared-moments"></div>
+      </div>
+      
+      <div id="confirmation-toast" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button type="button" class="mdl-snackbar__action"></button>
+      </div>
+
+
+
+    </main>
+     <!-- Image pop up model   -->
+      <div class='bg-modal'> 
+        <div class='modal-content'>
+          <div class='close'>X</div>
+        
+        </div>
+
+      </div> 
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDf1gKj8e1JGwod5zgu6b_VhbSItue676M",
+    authDomain: "studentscams-8639d.firebaseapp.com",
+    databaseURL: "https://studentscams-8639d.firebaseio.com",
+    projectId: "studentscams-8639d",
+    storageBucket: "studentscams-8639d.appspot.com",
+    messagingSenderId: "870146349479"
+  };
+  firebase.initializeApp(config);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const database = firebase.database();
+
+
+</script>
+<script defer src="/src/js/material.min.js"></script>
+<script src="/src/js/promise.js"></script>
+<script src="/src/js/fetch.js"></script>
+<script src="/src/js/indexedDB.js"></script>
+<script src="/src/js/db.js"></script>
+<script src="/src/js/app.js"></script>
+<script src="/src/js/feed.js"></script>
+</body>
+</html>

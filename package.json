@@ -1,0 +1,14 @@
+{
+  "name": "student-scams-pwa",
+  "version": "1.0.0",
+  "description": "A platform for student to increase their awareness of scams students face",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1"
+  },
+  "author": "Russell Neame",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}
