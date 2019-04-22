@@ -12,6 +12,7 @@ var canvasElement = document.querySelector('#canvas');
 var captureButton = document.querySelector('#capture-btn');
 var imagePicker = document.querySelector('#image-picker');
 var imagePickerArea = document.querySelector('#pick_image');
+var signUpError = document.querySelector('#signUpError');
 var picture;
 
 
@@ -46,6 +47,31 @@ const setupUI = (user) => {
     loggedOutLinks.forEach(item => item.style.display = 'block');
   }
 }
+
+
+
+//about 
+var aboutNav = document.querySelectorAll('.aboutNav');
+var aboutSection = document.querySelector('#aboutSection');
+aboutNav.forEach(function(btn){
+  btn.addEventListener('click', openAboutPage);
+})
+var callBtn = document.querySelector('#callBtn');
+var contactEmail = document.querySelector('#contactEmail');
+
+
+function openAboutPage() {
+  aboutSection.style.display = 'block';
+   setTimeout(function(){
+    aboutSection.style.transform = 'translateY(0)';
+  }, 1);
+  
+}
+
+callBtn.addEventListener('click', function(event){
+    contactEmail.style.display ='block';
+})
+
 
 
 //Sign up
@@ -86,6 +112,13 @@ return today;
 
 
 
+var mainImage = document.querySelectorAll('.main-image');
+mainImage.forEach(function(img){
+  img.addEventListener('click', function(event){
+    window.location.reload(true);
+  })
+})
+
 function openSignUpForm(){
   console.log(todaysDate());
   signUpArea.style.display = 'block';
@@ -93,6 +126,7 @@ function openSignUpForm(){
     signUpArea.style.transform = 'translateY(0)';
   }, 1);
   logInArea.style.display = 'none';
+  aboutSection.style.display = 'none';
 };
 
 function closeSignUpModal() {
@@ -128,6 +162,13 @@ signUpForm.addEventListener('submit', function(event){
         })
      
       
+  })
+  .catch(function(err){
+    signUpError.innerHTML = err.message;
+    signUpButton.style.display = 'block';
+    signUpProgressBar.style.display = 'none';
+    signUpError.style.display = 'block';
+    console.log(err.message);
   })
 });
 
@@ -172,6 +213,7 @@ function openLogInForm(){
   }, 1);
   logInArea.style.display = 'block';
   signUpArea.style.display = 'none';
+  aboutSection.style.display = 'none';
 }
 
 function closeLogInModal() {
@@ -395,7 +437,7 @@ function backSyncFallback(){
 }
 
 
-function srcToFile(src, fileName, mimeType){
+function convertDefaultImage(src, fileName, mimeType){
     return (fetch(src)
         .then(function(res){return res.arrayBuffer();})
         .then(function(buf){return new File([buf], fileName, {type:mimeType});})
@@ -409,15 +451,13 @@ create_post_form.addEventListener('submit', function(event){
     alert('please enter valid data');
     return;
   }
-  console.log(picture);
   if(typeof picture === "undefined"){
-    console.log('Picture was null');
-    srcToFile('/src/images/fallback_img.png', 'new.png', 'image/png')
+    convertDefaultImage('/src/images/fallback_img.png', 'new.png', 'image/png')
       .then(function(file){
         picture = file;
           closeCreatePostModal();
 
-//browser support for syncmanager is very low, only chrome and andriod support it
+//browser support for syncmanager is very low, only chrome and android support it
   if('serviceWorker' in navigator && 'SyncManager' in window){
       navigator.serviceWorker.ready
         .then(function(sw){
@@ -442,8 +482,7 @@ create_post_form.addEventListener('submit', function(event){
             }).catch(function(err){
               console.log(err);
             })
-            //sync-posts
-            //syn new posts
+         
           
         })
   }
@@ -530,9 +569,16 @@ userPromise.then(function(email){
       deletePost.style.color ='white';
       cardSubtitle.appendChild(deletePost);
       deletePost.addEventListener('click', function(event){
-      var ref = database.ref('posts/' + data.objId);
+      var alertBox = confirm('Are you sure you want to delete this?');
+      if(alertBox){
+          var ref = database.ref('posts/' + data.objId);
       ref.remove();
       console.log('deleted');
+      window.location.reload(true);
+      } else {
+        console.log('not deleted');
+      }
+      
 })
   }
 })
@@ -543,7 +589,7 @@ userPromise.then(function(email){
 
   var cardSubtitleText = document.createElement('h6');
   cardSubtitleText.style.color ='#fff';
-  cardSubtitleText.textContent =  'User: '+data.userEmail;
+  cardSubtitleText.textContent =  data.userEmail;
   cardSubtitleText.style.margin ='auto';
 
     
@@ -563,7 +609,7 @@ userPromise.then(function(email){
 
   var cardSubtitleText2 = document.createElement('h6');
   cardSubtitleText2.style.color ='#fff';
-  cardSubtitleText2.textContent = 'Date posted: ' +data.postDate;
+  cardSubtitleText2.textContent = 'Date posted: ' + data.postDate;
   cardSubtitleText2.style.margin ='auto';
   //cardSubtitle.style.backgroundColor = '#DCDCDC';
   cardSubtitle.style.height = '60px';
@@ -576,6 +622,7 @@ userPromise.then(function(email){
   cardTitle.className = 'mdl-card__title';
   cardTitle.style.backgroundImage = 'url(' + data.image +')';
   cardTitle.style.backgroundSize = 'cover';
+  cardTitle.style.border = "2px solid black";
   cardTitle.style.height = '240px';
 
   var imgPopup = document.querySelector('.bg-modal');
@@ -603,12 +650,16 @@ userPromise.then(function(email){
   })
 
   cardWrapper.appendChild(cardTitle);
-  var cardTitleTextElement = document.createElement('h2');
-  cardTitleTextElement.style.color = 'white';
-  cardTitleTextElement.className = 'mdl-card__title-text';
-  cardTitleTextElement.textContent = data.title;
+  // var cardTitleTextElement = document.createElement('h2');
+  // cardTitleTextElement.style.color = 'white';
+  // cardTitleTextElement.className = 'mdl-card__title-text';
+  // cardTitleTextElement.textContent = data.title;
   //cardTitle.appendChild(cardTitleTextElement);
 
+var cardSupportingText3 = document.createElement('h6');
+  //cardSupportingText.className = 'mdl-card__supporting-text';
+  cardSupportingText3.textContent =  "Location: " + data.location;
+  cardSupportingText3.style.textAlign = 'center';
 
  var cardSupportingText2 = document.createElement('div');
   cardSupportingText2.className = 'mdl-card__supporting-text';
@@ -619,6 +670,7 @@ userPromise.then(function(email){
   //cardSupportingText.className = 'mdl-card__supporting-text';
   cardSupportingText.textContent =  data.title;
   cardSupportingText.style.textAlign = 'center';
+  cardSupportingText.appendChild(cardSupportingText3);
   cardSupportingText.appendChild(cardSupportingText2);
   cardSubtitle.appendChild(cardSupportingText);
   

@@ -2,8 +2,8 @@
 importScripts('/src/js/indexedDB.js');
 importScripts('/src/js/db.js')
 
-var CACHE_STATIC_NAME = 'static-v20';
-var CACHE_DYNAMIC_NAME = 'dynamic-v1';
+var CACHE_STATIC_NAME = 'static-v16';
+var CACHE_DYNAMIC_NAME = 'dynamic-v7';
 var STATIC_FILES = [
           '/',
           '/index.html',

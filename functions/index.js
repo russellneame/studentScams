@@ -92,6 +92,7 @@ exports.storePostData = functions.https.onRequest(function(request, response) {
                 postDate: fields.postDate
               })
               .then(function() {
+                webpush.setGCMAPIKey('AAAAypjDmac:APA91bHeLAt7-hhO4ee8tXpAWwmQut9af6RVAM3_9ZfZQDfuNIXYwjK00ENG9FfimbMc5DoG86ODNQcUxTah04KFU9-OmXV_V_P-TFQ7KYWUgQtHRyNfTkA4sJ4qy2FHTMmxvik9G9_w');
                 webpush.setVapidDetails(
                   "mailto:russellneame@hotmail.co.uk",
                   "BMdfv8bb_SalzwEAxzQ8yhhMawESwiE1pXPxTO2fz8_CaC-M6RzTVUo4o6jZQsV36AVqTuW4o34B8r2CNsUl9L8",

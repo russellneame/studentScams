@@ -12,6 +12,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css">
   <link rel="stylesheet" href="/src/css/app.css">
   <link rel="stylesheet" href="/src/css/feed.css">
+  <link rel="stylesheet" href="/src/css/about.css">
   <link rel="manifest" href="/manifest.json">
 
   <!-- These meta / link tags help safari / IOS -->
@@ -40,36 +41,40 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">StudentScams</span>
+        <span class="mdl-layout-title"><img src="/src/images/logo.png"
+           alt="StudentScams"
+           class="main-image"></span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="/">Posts</a>
-          <a class="mdl-navigation__link" href="/about">About</a>
+          <a class="mdl-navigation__link" href="/">Posts <i class="material-icons">home</i></a>
+          <a class="mdl-navigation__link" href="/about">About<i class="material-icons">info</i></a>
           <a class="mdl-navigation__link log_in_button logged_out" style="display: none;">Log In <i class="material-icons">account_circle</i></a>
           <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
         <a class="mdl-navigation__link sign_up_button logged_out" style="display: none;">Sign up <i class="material-icons">account_box</i> </a>
         
           <div class="drawer-option">
             <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
-              Enable Notifications
+              Enable Notifications<i class="material-icons">notification_important</i>
             </button>
           </div>
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">StudentScams</span>
+      <span class="mdl-layout-title"><img src="/src/images/logo.png"
+           alt="StudentScams"
+           class="main-image"></span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/">Posts</a>
-        <a class="mdl-navigation__link" href="/about">About</a>
+        <a class="mdl-navigation__link" href="/">Posts <i class="material-icons">home</i></a>
+        <a class="mdl-navigation__link" href="/about">About<i class="material-icons">info</i></a>
         <a class="mdl-navigation__link log_in_button logged_out" style="display: none;">Log In <i class="material-icons">account_circle</i></a>
         <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
         <a class="mdl-navigation__link sign_up_button logged_out" style="display: none;">Sign up <i class="material-icons">account_box</i></a>
         <div class="drawer-option">
           <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
-            Enable Notifications
+            Enable Notifications<i class="material-icons">notification_important</i>
           </button>
         </div>
       </nav>
@@ -78,7 +83,9 @@
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col text-center">
          <h3>About</h3>
+         <div id='aboutSection'>
           <p>StudentScams is a platform that was created in order to help raise awareness about different scams that students face. This platform gives users the ability to read through other peoples posts, as well as share their own experiences or warnings, which in turn will aim to increase students knowledge of the scams and result in reducing students susceptibility to scams.</p>
+        </div>
         </div>
       </div>
       <div class="mdl-grid">
@@ -102,9 +109,33 @@
 </div>
 </div>
 
+
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDf1gKj8e1JGwod5zgu6b_VhbSItue676M",
+    authDomain: "studentscams-8639d.firebaseapp.com",
+    databaseURL: "https://studentscams-8639d.firebaseio.com",
+    projectId: "studentscams-8639d",
+    storageBucket: "studentscams-8639d.appspot.com",
+    messagingSenderId: "870146349479"
+  };
+  firebase.initializeApp(config);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const database = firebase.database();
+
+
+</script>
 <script defer src="/src/js/material.min.js"></script>
 <script src="/src/js/promise.js"></script>
 <script src="/src/js/fetch.js"></script>
 <script src="/src/js/app.js"></script>
+<script src="/src/js/feed.js"></script>
 </body>
 </html>

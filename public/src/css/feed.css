@@ -24,6 +24,32 @@
   
 }
 
+#aboutSection {
+  z-index: 1001;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: scroll;
+  bottom: 0;
+  top: 56px;
+  background: white;
+  text-align: center;
+  display: none;
+  transform: translateY(100vh);
+  transition: transform 0.5s;
+}
+
+#aboutText{
+  width:50%;
+  margin: auto;
+}
+
+.aboutNav {
+  cursor: pointer;
+}
+
+
+
 
 #upload-img{
   margin: 10px auto;
@@ -105,10 +131,28 @@
   display: none;
 }
 
+#signUpError{
+  color: red;
+  display: none;
+  font-size: 10px;
+}
+
 #loginProgressBar {
   margin: auto;
   text-align: center;
   display: none;
+}
+
+.log_in_button{
+  cursor: pointer;
+}
+
+.logout_button{
+  cursor: pointer;
+}
+
+.sign_up_button{
+  cursor: pointer;
 }
 
 .login-btn{
