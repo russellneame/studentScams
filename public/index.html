@@ -27,6 +27,13 @@
   <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-144x144.png" sizes="144x144">
   <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-152x152.png" sizes="152x152">
   <link rel="apple-touch-icon" href="/src/images/icons/ios-icon-180x180.png" sizes="180x180">
+  <!-- Splash screen for ios  -->
+  <link rel="apple-touch-startup-image" href="/src/images/splashscreen/ios_splashscreen_640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="/src/images/splashscreen/test.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="/src/images/splashscreen/ios_splashscreen_1242x2148.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="/src/images/splashscreen/ios_splashscreen_1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="/src/images/splashscreen/ios_splashscreen_1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="/src/images/splashscreen/ios_splashscreen_1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
 
    <!-- Internet explorer -->
   <meta name="msapplication-TileImage" content="/src/images/icons/app_icon_144x144.png">
@@ -40,15 +47,15 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title"> <img src="/src/images/logo.png"
-           alt="StudentScams"
+        <span class="mdl-layout-title" href='/'> <img src="/src/images/logo.png"
+           alt="StudentScams" 
            class="main-image"></span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link nav_bar_show always_show" style="display: none;"  href="/">Posts <i class="material-icons">home</i></a>
-          <a class="mdl-navigation__link nav_bar_show always_show" style="display: none;" href="/about">About <i class="material-icons">info</i></a>
+          <a class="mdl-navigation__link nav_bar_show always_show aboutNav" style="display: none;">About <i class="material-icons">info</i></a>
           <a class="mdl-navigation__link log_in_button logged_out" style="display: none;">Log In <i class="material-icons">account_circle</i></a>
           <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
         <a class="mdl-navigation__link sign_up_button logged_out" style="display: none;">Sign up <i class="material-icons">account_box</i> </a>
@@ -67,7 +74,7 @@
            class="main-image"></span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="/">Posts <i class="material-icons">home</i></a>
-        <a class="mdl-navigation__link" href="/about">About <i class="material-icons">info</i></a>
+        <a class="mdl-navigation__link aboutNav">About <i class="material-icons">info</i></a>
         <a class="mdl-navigation__link log_in_button logged_out close_drawer"  style="display: none;">Log In <i class="material-icons">account_circle</i></a>
         <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
         <a class="mdl-navigation__link sign_up_button logged_out close_drawer" style="display: none;">Sign up <i class="material-icons">account_box</i></a>
@@ -84,6 +91,7 @@
       <!-- Create Sign up pop up form  -->
       <div id="sign-up">
         <h3>Create an account!</h3>
+        <div id='signUpError'></div>
         <form id='signup_form'>
           <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="signUpEmail">
@@ -115,6 +123,7 @@
        <!-- Create Log in form  -->
       <div id="log_in">
         <h3>Log In!</h3>
+        <div id='loginError'></div>
         <form id='login_form'>
           <div id='login_msg' style='display: none;'></div>
           <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -183,9 +192,11 @@
           </div>
         </form>
       </div>
-        <img src="/src/images/logo.png"
-           alt="Explore the City"
-           class="main-image">
+        <img src="/src/images/cropped2.png"
+           alt="student scams"
+           class="main-image"
+
+           >
   
       <div class="page-content">
         <h5 class="text-center mdl-color-text--primary">Share your own scam experiences / stories</h5>
@@ -203,6 +214,28 @@
         <button type="button" class="mdl-snackbar__action"></button>
       </div>
 
+      <div id='aboutSection'> 
+         <h3>About</h3>
+         <div id='aboutText'>
+          <p>StudentScams is a platform that was created in order to help raise awareness about different scams that students face. This platform gives users the ability to read through other peoples posts, as well as share their own experiences or warnings, which in turn will aim to increase students knowledge of the scams and result in reducing students susceptibility to scams. We encourage users to take pictures, upload screenshots and write about any of their suspicions when it comes to scamming.</p>
+        </div>
+        
+        
+     
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col text-center">
+          <h3>Contact Us!</h3>
+          <div>
+            
+            <button id="callBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+              <i class="material-icons">email</i>
+            </button>
+           <h5 style='display: none' id='contactEmail'>2neamr52@solent.ac.uk</h5>
+          </div>
+        </div>
+      </div>
+
+      </div>
 
 
     </main>

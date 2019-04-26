@@ -1,7 +1,7 @@
 {
   "name": "student-scams-pwa",
   "version": "1.0.0",
-  "description": "A platform for student to increase their awareness of scams students face",
+  "description": "A platform for students to increase their awareness of scams",
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1"

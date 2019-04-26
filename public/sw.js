@@ -121,12 +121,11 @@ self.addEventListener('fetch', function(event) {
               })
         );
   
-  //this regexp basically checks whether the request contains any of the static files,
-  // because if it does it will use the cache only method as this is probably the most efficient way 
+  
 } else if(inArray(event.request.url, STATIC_FILES))
-  //new RegExp('\\b' + STATIC_FILES.join('\\b|\\b') + '\\b').test(event.request.url))
+  
 {
-//check adv caching assignment for alternative function
+
   event.respondWith(
     caches.match(event.request)
       );
@@ -150,7 +149,7 @@ else {
             })
             .catch(function(err) {
               return caches.open(CACHE_STATIC_NAME).then(function(cache){
-                //if(event.request.url.indexOf('/help')){
+               
                 if(event.request.headers.get('accept').includes('text/html')) {
                   return cache.match('/offline.html');
                 }

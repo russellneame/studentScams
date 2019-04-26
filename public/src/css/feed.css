@@ -24,6 +24,16 @@
   
 }
 
+#signup_btn{
+
+  margin: auto;
+}
+
+#login-btn{
+
+  margin: auto;
+}
+
 #aboutSection {
   z-index: 1001;
   position: fixed;
@@ -132,6 +142,12 @@
 }
 
 #signUpError{
+  color: red;
+  display: none;
+  font-size: 10px;
+}
+
+#loginError{
   color: red;
   display: none;
   font-size: 10px;

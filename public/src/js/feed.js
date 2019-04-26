@@ -13,6 +13,7 @@ var captureButton = document.querySelector('#capture-btn');
 var imagePicker = document.querySelector('#image-picker');
 var imagePickerArea = document.querySelector('#pick_image');
 var signUpError = document.querySelector('#signUpError');
+var loginError = document.querySelector('#loginError');
 var picture;
 
 
@@ -241,6 +242,13 @@ loginForm.addEventListener('submit', function(event){
 
 
       })
+      .catch(function(err){
+    loginError.innerHTML = err.message;
+    logInButton.style.display = 'block';
+    loginProgressBar.style.display = 'none';
+    loginError.style.display = 'block';
+    console.log(err.message);
+  })
 })
 
 var cameraSwitch = document.querySelector('#camera-switch');
@@ -314,22 +322,6 @@ function initializeMedia(){
       imagePickerArea.style.display = 'block';
     })
 }
-
-//display user facing camera
-//display change camera button 
-//when button clicked
-//display back camera
-//hide change camera button
-//display different change camera button 
-//when button clicked
-//display user facing camera
-//hide button 
-//display original button 
-
-
-
-
-
 
 
 captureButton.addEventListener('click', function(event){
