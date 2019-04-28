@@ -2,8 +2,8 @@
 importScripts('/src/js/indexedDB.js');
 importScripts('/src/js/db.js')
 
-var CACHE_STATIC_NAME = 'static-v16';
-var CACHE_DYNAMIC_NAME = 'dynamic-v7';
+var CACHE_STATIC_NAME = 'static-v18';
+var CACHE_DYNAMIC_NAME = 'dynamic-v8';
 var STATIC_FILES = [
           '/',
           '/index.html',
@@ -18,6 +18,8 @@ var STATIC_FILES = [
           '/src/css/app.css',
           '/src/css/feed.css',
           '/src/images/logo.png',
+          '/src/images/cropped2.png',
+          '/src/images/fallback_img.png',
           'https://fonts.googleapis.com/css?family=Roboto:400,700',
           'https://fonts.googleapis.com/icon?family=Material+Icons',
           'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css'
@@ -43,6 +45,8 @@ self.addEventListener('install', function(event) {
           '/src/css/app.css',
           '/src/css/feed.css',
           '/src/images/logo.png',
+          '/src/images/cropped2.png',
+          '/src/images/fallback_img.png',
           'https://fonts.googleapis.com/css?family=Roboto:400,700',
           'https://fonts.googleapis.com/icon?family=Material+Icons',
           'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css'

@@ -8,9 +8,6 @@ var os = require("os");
 var Busboy = require("busboy");
 var path = require('path');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
 
 var serviceAccount = require("./studentscams-fb-key.json");
 
@@ -20,13 +17,6 @@ const gcs = new Storage({
     projectId: "studentscams-8639d",
     keyFilename: "studentscams-fb-key.json"
 });
-
-// var gcconfig = {
-//   projectId: "studentscams-8639d",
-//   keyFilename: "studentscams-fb-key.json"
-// };
-
-// var gcs = require("@google-cloud/storage")(gcconfig);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -38,12 +28,10 @@ exports.storePostData = functions.https.onRequest(function(request, response) {
     var uuid = UUID();
 
     const busboy = new Busboy({ headers: request.headers });
-    // These objects will store the values (file + fields) extracted from busboy
     let upload;
     const fields = {};
     var fileUploaded = false;
 
-    // This callback will be invoked for each file uploaded
     busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
       console.log(
         `File [${fieldname}] filename: ${filename}, encoding: ${encoding}, mimetype: ${mimetype}`
@@ -54,12 +42,11 @@ exports.storePostData = functions.https.onRequest(function(request, response) {
       fileUploaded = true;
     });
 
-    // This will invoked on every field detected
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
       fields[fieldname] = val;
     });
 
-    // This callback will be invoked after all uploaded files are saved.
+    // callback will be run after uploaded files are saved
     busboy.on("finish", () => {
       var bucket = gcs.bucket("studentscams-8639d.appspot.com");
       bucket.upload(
@@ -137,12 +124,7 @@ exports.storePostData = functions.https.onRequest(function(request, response) {
       );
     });
 
-    // The raw bytes of the upload will be in request.rawBody.  Send it to busboy, and get
-    // a callback when it's finished.
     busboy.end(request.rawBody);
-    // formData.parse(request, function(err, fields, files) {
-    //   fs.rename(files.file.path, "/tmp/" + files.file.name);
-    //   var bucket = gcs.bucket("YOUR_PROJECT_ID.appspot.com");
-    // });
+  
   });
 });

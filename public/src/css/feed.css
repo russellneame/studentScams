@@ -13,6 +13,8 @@
   transition: transform 0.5s;
 }
 
+
+
 #create-post video, #create-post canvas {
   width: 512px;
   max-width: 100%;
