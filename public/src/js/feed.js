@@ -73,8 +73,6 @@ callBtn.addEventListener('click', function(event){
     contactEmail.style.display ='block';
 })
 
-
-
 //Sign up
 var signUpNavButton = document.querySelectorAll('.sign_up_button');
 var signUpArea = document.querySelector('#sign-up');
@@ -82,14 +80,10 @@ var closeSignUpModalButton = document.querySelector('#close-sign-up-modal-btn');
 var signUpButton = document.querySelector('#signup_btn');
 var signUpForm = document.querySelector('#signup_form');
 var signUpProgressBar = document.querySelector('#signUpProgressBar');
-
-
 signUpNavButton.forEach(function(btn){
   btn.addEventListener('click', openSignUpForm);
 })
-
 closeSignUpModalButton.addEventListener('click', closeSignUpModal);
-
 
 function todaysDate(){
 var today = new Date();
@@ -100,18 +94,12 @@ var yyyy = today.getFullYear();
 if(dd<10) {
     dd = '0'+dd
 } 
-
 if(mm<10) {
     mm = '0'+mm
 } 
-
 today = dd + '-' + mm + '-' + yyyy;
-
 return today;
-
 }
-
-
 
 var mainImage = document.querySelectorAll('.main-image');
 mainImage.forEach(function(img){
@@ -143,7 +131,6 @@ signUpForm.addEventListener('submit', function(event){
   var signUpEmail = signUpForm['signUpEmail'].value;
   var signUpPassword = signUpForm['signUpPassword'].value;
   //var signUpUsername = signUpForm['signUpUsername'].value;
-  
   auth.createUserWithEmailAndPassword(signUpEmail, signUpPassword).then(function(cred){
       fetch('https://studentscams-8639d.firebaseio.com/users.json', {
         method: 'POST',
@@ -176,8 +163,7 @@ signUpForm.addEventListener('submit', function(event){
 
 //Logout function
 
-var logout = document.querySelectorAll('.logout_button');
-    
+var logout = document.querySelectorAll('.logout_button');   
     logout.forEach(function(btn){
      btn.addEventListener('click', function(event){
       event.preventDefault();
@@ -187,10 +173,6 @@ var logout = document.querySelectorAll('.logout_button');
       });
      });
 })
-
-
-
-
 
 //Log In
 var logInNavButton = document.querySelectorAll('.log_in_button');
@@ -239,8 +221,6 @@ loginForm.addEventListener('submit', function(event){
           console.log(cred);
           closeLogInModal();
           loginForm.reset();
-
-
       })
       .catch(function(err){
     loginError.innerHTML = err.message;
@@ -322,8 +302,6 @@ function initializeMedia(){
       imagePickerArea.style.display = 'block';
     })
 }
-
-
 captureButton.addEventListener('click', function(event){
   canvasElement.style.display ='block';
   videoPlayer.style.display = 'none';
@@ -525,21 +503,6 @@ create_post_form.addEventListener('submit', function(event){
 }
 })
 
-
-
-
-
-//currently not in use - allows user to save specific material for caching later e.g. articles 
-function onSaveButtonClicked(event) {
-  console.log('clicked');
-  if('caches' in window){
-    caches.open('user-requested').then(function(cache){
-        cache.add('https://httpbin.org/get');
-        cache.add('/src/images/sf-boat.jpg');
-    });
-  }
-}
-
 function clearCards(){
 
   while(sharedMomentsArea.hasChildNodes()){
@@ -583,10 +546,6 @@ userPromise.then(function(email){
   cardSubtitleText.style.color ='#fff';
   cardSubtitleText.textContent =  data.userEmail;
   cardSubtitleText.style.margin ='auto';
-
-    
-
-
   // var accIcon = document.createElement('div');
   // accIcon.className ='accIcon';
   // accIcon.style.display ='inline-block';
@@ -595,7 +554,6 @@ userPromise.then(function(email){
   // accIcon.style.position ='relative';
   // accIcon.style.top ='5px';
   // accIcon.style.left ='5px';
-
   //cardSubtitleText.appendChild(accIcon);
   //accIcon.appendChild(cardSubtitleText);
 
@@ -607,7 +565,6 @@ userPromise.then(function(email){
   cardSubtitle.style.height = '60px';
   //cardSubtitle.style.margin ='10px';
   cardSubtitle.style.backgroundColor ='#0095fb';
-  
   cardSubtitle.appendChild(cardSubtitleText);
   cardSubtitle.appendChild(cardSubtitleText2);
   cardWrapper.appendChild(cardSubtitle);
@@ -616,14 +573,11 @@ userPromise.then(function(email){
   cardTitle.style.backgroundSize = 'cover';
   cardTitle.style.border = "2px solid black";
   cardTitle.style.height = '240px';
-
   var imgPopup = document.querySelector('.bg-modal');
   var imgPopupContent = document.querySelector('.modal-content');
   var elem = document.createElement("img");
   cardTitle.addEventListener('click', function(event){
-    console.log('you clicked the image');
-
-    
+    console.log('you clicked the image');  
   elem.setAttribute("src", data.image);
   elem.setAttribute("height", '100%');
   elem.setAttribute("width", '100%');
@@ -642,22 +596,15 @@ userPromise.then(function(email){
   })
 
   cardWrapper.appendChild(cardTitle);
-  // var cardTitleTextElement = document.createElement('h2');
-  // cardTitleTextElement.style.color = 'white';
-  // cardTitleTextElement.className = 'mdl-card__title-text';
-  // cardTitleTextElement.textContent = data.title;
-  //cardTitle.appendChild(cardTitleTextElement);
 
 var cardSupportingText3 = document.createElement('h6');
   //cardSupportingText.className = 'mdl-card__supporting-text';
   cardSupportingText3.textContent =  "Location: " + data.location;
   cardSupportingText3.style.textAlign = 'center';
-
  var cardSupportingText2 = document.createElement('div');
   cardSupportingText2.className = 'mdl-card__supporting-text';
   cardSupportingText2.textContent =  data.content;
   cardSupportingText2.style.textAlign = 'center';
-
   var cardSupportingText = document.createElement('h5');
   //cardSupportingText.className = 'mdl-card__supporting-text';
   cardSupportingText.textContent =  data.title;
@@ -665,15 +612,6 @@ var cardSupportingText3 = document.createElement('h6');
   cardSupportingText.appendChild(cardSupportingText3);
   cardSupportingText.appendChild(cardSupportingText2);
   cardSubtitle.appendChild(cardSupportingText);
-  
- 
-
-
-  
-  // var cardSaveButton = document.createElement('button');
-  // cardSaveButton.textContent = 'Save';
-  // cardSaveButton.addEventListener('click', onSaveButtonClicked);
-  // cardSupportingText.appendChild(cardSaveButton);
   cardWrapper.appendChild(cardSupportingText);
   componentHandler.upgradeElement(cardWrapper);
 

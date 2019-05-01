@@ -78,7 +78,8 @@ function pushSubscription(){
             applicationServerKey: convertedVapidPublicKey
           });
         } else {
-          //we already have a subscription
+          alert('You have already subscribed to push notifications');
+          //already have a subscription
         }
     })
       .then(function(newSubscription){
@@ -109,7 +110,6 @@ function askForNotificationPermission(){
         if(result !== 'granted'){
           console.log('No permission granted');
         } else {
-          //displayConfirmNotification();
           pushSubscription();
         }
     })

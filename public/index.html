@@ -46,20 +46,17 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <!-- Title -->
+        
         <span class="mdl-layout-title" href='/'> <img src="/src/images/logo.png"
            alt="StudentScams" 
            class="main-image"></span>
-        <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link nav_bar_show always_show" style="display: none;"  href="/">Posts <i class="material-icons">home</i></a>
           <a class="mdl-navigation__link nav_bar_show always_show aboutNav" style="display: none;">About <i class="material-icons">info</i></a>
           <a class="mdl-navigation__link log_in_button logged_out" style="display: none;">Log In <i class="material-icons">account_circle</i></a>
           <a class="mdl-navigation__link logout_button logged_in" style="display: none;">Logout <i class="material-icons">account_box</i> </a>
         <a class="mdl-navigation__link sign_up_button logged_out" style="display: none;">Sign up <i class="material-icons">account_box</i> </a>
-        
           <div class="drawer-option">
             <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" style="display: none;">
               Enable Notifications <i class="material-icons">notification_important</i>
@@ -84,7 +81,6 @@
           </button>
         </div>
       </nav>
-     
     </div>
     <main class="mdl-layout__content mat-typography">
 
@@ -108,9 +104,7 @@
 
             </button>
             <div  id='signUpProgressBar'class="mdl-spinner mdl-js-spinner is-active"></div>
-           
-          
-          </div>
+            </div>
           <br>
           <div>
             <button class="mdl-button mdl-js-button mdl-button--fab" id="close-sign-up-modal-btn" type="button">
@@ -150,8 +144,6 @@
           </div>
         </form>
       </div>
-
-
       <!-- Create post pop up form  -->
       <div id="create-post">
         <h3>Post your own scam experience </h3>
@@ -165,7 +157,6 @@
             <input type='file' accept='image/*' id='image-picker'> 
          </div>
         <form id='create_post_form'>
-          
           <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="title">
             <label class="mdl-textfield__label" for="title" name="title">Post title:</label>

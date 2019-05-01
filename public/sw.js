@@ -2,8 +2,8 @@
 importScripts('/src/js/indexedDB.js');
 importScripts('/src/js/db.js')
 
-var CACHE_STATIC_NAME = 'static-v18';
-var CACHE_DYNAMIC_NAME = 'dynamic-v8';
+var CACHE_STATIC_NAME = 'static-v1';
+var CACHE_DYNAMIC_NAME = 'dynamic-v1';
 var STATIC_FILES = [
           '/',
           '/index.html',
@@ -38,7 +38,9 @@ self.addEventListener('install', function(event) {
           '/index.html',
           '/offline.html',
           '/src/js/app.js',
+          '/src/js/db.js',
           '/src/js/feed.js',
+          '/src/js/indexedDB.js',
           '/src/js/promise.js',
           '/src/js/fetch.js',
           '/src/js/material.min.js',
@@ -70,31 +72,6 @@ self.addEventListener('activate', function(event) {
   );
   return self.clients.claim();
 });
-
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then(function(response) {
-//         if (response) {
-//           return response;
-//         } else {
-//           return fetch(event.request)
-//             .then(function(res) {
-//               return caches.open(CACHE_DYNAMIC_NAME)
-//                 .then(function(cache) {
-//                   cache.put(event.request.url, res.clone());
-//                   return res;
-//                 })
-//             })
-//             .catch(function(err) {
-//               return caches.open(CACHE_STATIC_NAME).then(function(cache){
-//                 return cache.match('/offline.html');
-//               });
-//             });
-//         }
-//       })
-//   );
-// });
 
 function inArray(string,array){
   for(var i=0; i< array.length; i++){
@@ -165,42 +142,6 @@ else {
 
 }
 })
-
-
-
-//get resources from network first, then get from cache if network fails 
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     fetch(event.request).then(function(res){
-//       return caches.open(CACHE_DYNAMIC_NAME)
-//                 .then(function(cache) {
-//                   cache.put(event.request.url, res.clone());
-//                   return res;
-//                   })
-//                 }
-//               ) .catch(function(err){
-//                   console.log(err);
-//                      return caches.match(event.request);
-//                         }) 
-//                       );
-//                     });
-
-
-//network only
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     fetch(event.request)
-//       )
-// });
-
-
-//cache only
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     caches.match(event.request)
-//       )
-// });
-
 
 self.addEventListener('sync', function(event){
   console.log('[Service Worker] - Background syncing', event);
