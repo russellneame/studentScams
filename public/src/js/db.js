@@ -1,12 +1,15 @@
+//Create store to cache existing posts
 var dbPromise = idb.open('posts-store', 1, function(db){
   if(!db.objectStoreNames.contains('posts')){
     db.createObjectStore('posts', {keyPath: 'id'});
   }
+  //Create store for posts that havent posted yet
   if(!db.objectStoreNames.contains('background-sync-posts')){
     db.createObjectStore('background-sync-posts', {keyPath: 'id'});
   }
 })
 
+//Write data to indexDB 
 function writeData(st, data){
 				return dbPromise.then(function(db){
                       var tx = db.transaction(st, 'readwrite');
@@ -17,6 +20,7 @@ function writeData(st, data){
 
 }
 
+//reads data from a specific store
 function readAllData(st){
 		return dbPromise.then(function(db){
                       var tx = db.transaction(st, 'readonly');

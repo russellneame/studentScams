@@ -239,7 +239,7 @@ cameraSwitch2.addEventListener('click', UserFacingCamera);
 
 function UserFacingCamera(){
   console.log('user facing');
-    cameraSwitch.style.display ='block';
+  cameraSwitch.style.display ='block';
   cameraSwitch2.style.display ='none';
   if(!('mediaDevices' in navigator)){
     navigator.mediaDevices={};
@@ -302,6 +302,8 @@ function initializeMedia(){
       imagePickerArea.style.display = 'block';
     })
 }
+
+//Taking a picture
 captureButton.addEventListener('click', function(event){
   canvasElement.style.display ='block';
   videoPlayer.style.display = 'none';
@@ -344,7 +346,7 @@ function openCreatePostModal() {
   login_msg.style.display = 'block';
   openLogInForm();
 }
-  
+  //If threshold is met then prompt for app install
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
@@ -381,7 +383,7 @@ shareImageButton.addEventListener('click', openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
-//if browser doesn't support SyncManager
+//if browser doesn't support SyncManager then send data straight to backend
 function backSyncFallback(){
   var id = new Date().toISOString();
   console.log('Picture is: ' + picture)
@@ -394,7 +396,7 @@ function backSyncFallback(){
             postData.append('userEmail', firebase.auth().currentUser.email);
             postData.append('file', picture, id + '.png');
             postData.append('postDate', todaysDate());
-
+  //Points to our deployed firebase function REST endpoint
   fetch('https://us-central1-studentscams-8639d.cloudfunctions.net/storePostData', {
     method: 'POST',
     body: postData
@@ -414,7 +416,7 @@ function convertDefaultImage(src, fileName, mimeType){
     );
 }
 
-
+//Submit Post event listner
 create_post_form.addEventListener('submit', function(event){
   event.preventDefault();
   if(title_input.value.trim() === "" ||  content_input.value.trim() === "" ||  location_input.value.trim() === ""){
@@ -425,82 +427,84 @@ create_post_form.addEventListener('submit', function(event){
     convertDefaultImage('/src/images/fallback_img.png', 'new.png', 'image/png')
       .then(function(file){
         picture = file;
-          closeCreatePostModal();
+        closeCreatePostModal();
 
-//browser support for syncmanager is very low, only chrome and android support it
-  if('serviceWorker' in navigator && 'SyncManager' in window){
-      navigator.serviceWorker.ready
-        .then(function(sw){
-          var post = {
-            id: new Date().toISOString(),
-            title: title_input.value,
-            content: content_input.value,
-            location: location_input.value,
-            userid: firebase.auth().currentUser.uid,
-            userEmail: firebase.auth().currentUser.email,
-            picture: picture,
-            postDate: todaysDate()
-          };
-          writeData('background-sync-posts', post)
-            .then(function(){
-              sw.sync.register('sync-scam-post');
-            })
-            .then(function(){
-              var snackbarContainer = document.querySelector('#confirmation-toast');
-              var data = {message: 'Your post has been submitted!'};
-              snackbarContainer.MaterialSnackbar.showSnackbar(data);
-            }).catch(function(err){
-              console.log(err);
-            })
-         
+    //browser support for syncmanager is very low, only chrome and android support it
+    if('serviceWorker' in navigator && 'SyncManager' in window){
+        navigator.serviceWorker.ready
+          .then(function(sw){
+            var post = {
+              id: new Date().toISOString(),
+              title: title_input.value,
+              content: content_input.value,
+              location: location_input.value,
+              userid: firebase.auth().currentUser.uid,
+              userEmail: firebase.auth().currentUser.email,
+              picture: picture,
+              postDate: todaysDate()
+            };
+            writeData('background-sync-posts', post)
+              .then(function(){
+                //Post the posts stored in IndexedDB using background sync
+                sw.sync.register('sync-scam-post');
+              })
+              .then(function(){
+                var snackbarContainer = document.querySelector('#confirmation-toast');
+                var data = {message: 'Your post has been submitted!'};
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              }).catch(function(err){
+                console.log(err);
+              })
           
+            
+          })
+    }
+    else {
+        //Post the post straight to the database (No IndexedDB)
+        backSyncFallback();
+
+    }
         })
-  }
-  else {
-      backSyncFallback();
+    //picture = '/src/images/fallback_img.png';
+    } else {
 
-  }
-      })
-   //picture = '/src/images/fallback_img.png';
-  } else {
+    closeCreatePostModal();
 
-  closeCreatePostModal();
+  //browser support for syncmanager is very low, only chrome and andriod support it
+    if('serviceWorker' in navigator && 'SyncManager' in window){
+        navigator.serviceWorker.ready
+          .then(function(sw){
+            var post = {
+              id: new Date().toISOString(),
+              title: title_input.value,
+              content: content_input.value,
+              location: location_input.value,
+              userid: firebase.auth().currentUser.uid,
+              userEmail: firebase.auth().currentUser.email,
+              picture: picture,
+              postDate: todaysDate()
+            };
+            writeData('background-sync-posts', post)
+              .then(function(){
+                sw.sync.register('sync-scam-post');
+              })
+              .then(function(){
+                var snackbarContainer = document.querySelector('#confirmation-toast');
+                var data = {message: 'Your post has been submitted!'};
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              }).catch(function(err){
+                console.log(err);
+              })
+              //sync-posts
+              //syn new posts
+            
+          })
+    }
+    else {
+        backSyncFallback();
 
-//browser support for syncmanager is very low, only chrome and andriod support it
-  if('serviceWorker' in navigator && 'SyncManager' in window){
-      navigator.serviceWorker.ready
-        .then(function(sw){
-          var post = {
-            id: new Date().toISOString(),
-            title: title_input.value,
-            content: content_input.value,
-            location: location_input.value,
-            userid: firebase.auth().currentUser.uid,
-            userEmail: firebase.auth().currentUser.email,
-            picture: picture,
-            postDate: todaysDate()
-          };
-          writeData('background-sync-posts', post)
-            .then(function(){
-              sw.sync.register('sync-scam-post');
-            })
-            .then(function(){
-              var snackbarContainer = document.querySelector('#confirmation-toast');
-              var data = {message: 'Your post has been submitted!'};
-              snackbarContainer.MaterialSnackbar.showSnackbar(data);
-            }).catch(function(err){
-              console.log(err);
-            })
-            //sync-posts
-            //syn new posts
-          
-        })
+    }
   }
-  else {
-      backSyncFallback();
-
-  }
-}
 })
 
 function clearCards(){

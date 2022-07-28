@@ -2,6 +2,7 @@
 importScripts('/src/js/indexedDB.js');
 importScripts('/src/js/db.js')
 
+
 var CACHE_STATIC_NAME = 'static-v1';
 var CACHE_DYNAMIC_NAME = 'dynamic-v1';
 var STATIC_FILES = [
@@ -26,43 +27,28 @@ var STATIC_FILES = [
 ];
 
 
-
+//Fired when browser installs the service worker
 self.addEventListener('install', function(event) {
   console.log('[Service Worker] Installing Service Worker ...', event);
   event.waitUntil(
     caches.open(CACHE_STATIC_NAME)
       .then(function(cache) {
         console.log('[Service Worker] Precaching App Shell');
-        cache.addAll([
-          '/',
-          '/index.html',
-          '/offline.html',
-          '/src/js/app.js',
-          '/src/js/db.js',
-          '/src/js/feed.js',
-          '/src/js/indexedDB.js',
-          '/src/js/promise.js',
-          '/src/js/fetch.js',
-          '/src/js/material.min.js',
-          '/src/css/app.css',
-          '/src/css/feed.css',
-          '/src/images/logo.png',
-          '/src/images/cropped2.png',
-          '/src/images/fallback_img.png',
-          'https://fonts.googleapis.com/css?family=Roboto:400,700',
-          'https://fonts.googleapis.com/icon?family=Material+Icons',
-          'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css'
-        ]);
+        cache.addAll(STATIC_FILES);
       })
   )
 });
 
+//Fired when service worker is activated
 self.addEventListener('activate', function(event) {
   console.log('[Service Worker] Activating Service Worker ....', event);
   event.waitUntil(
+    //Gets all cache keys
     caches.keys()
       .then(function(keyList) {
+        //Takes an array of cache keys and runs promises for each
         return Promise.all(keyList.map(function(key) {
+          //If cache is oold, delete the cache in 
           if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
             console.log('[Service Worker] Removing old cache.', key);
             return caches.delete(key);
@@ -70,7 +56,7 @@ self.addEventListener('activate', function(event) {
         }));
       })
   );
-  return self.clients.claim();
+  return self.clients.claim(); //ensures service workers are activated correctly 
 });
 
 function inArray(string,array){
@@ -82,25 +68,27 @@ function inArray(string,array){
   return false;
 }
 
+
 self.addEventListener('fetch', function(event) {
   var url = 'https://studentscams-8639d.firebaseio.com/posts';
 
+  
   if(event.request.url.indexOf(url) > -1){
-  event.respondWith(fetch(event.request)
-        .then(function(res){
-                var clonedRes = res.clone();
-                clearAllData('posts').then(function(){
-                  return clonedRes.json();
+    event.respondWith(fetch(event.request)
+          .then(function(res){
+                  var clonedRes = res.clone();
+                  clearAllData('posts').then(function(){
+                    return clonedRes.json();
+                  })
+                  .then(function(data){
+                    //places dynamic data into indexedDB database
+                      for(var dataKey in data){
+                        writeData('posts', data[dataKey]);
+                    }
+                  });
+                  return res;
                 })
-                .then(function(data){
-                  //places dynamic data into indexedDB database
-                    for(var dataKey in data){
-                      writeData('posts', data[dataKey]);
-                  }
-                });
-                return res;
-              })
-        );
+          );
   
   
 } else if(inArray(event.request.url, STATIC_FILES))
@@ -124,13 +112,15 @@ else {
             .then(function(res) {
               return caches.open(CACHE_DYNAMIC_NAME)
                 .then(function(cache) {
+                  //Create a clone of the response data and store this in the cache
                   cache.put(event.request.url, res.clone());
+                  //return original res
                   return res;
                 })
             })
             .catch(function(err) {
               return caches.open(CACHE_STATIC_NAME).then(function(cache){
-               
+                //Checks accept headers for html and return offline.html from cache
                 if(event.request.headers.get('accept').includes('text/html')) {
                   return cache.match('/offline.html');
                 }
@@ -170,6 +160,7 @@ self.addEventListener('sync', function(event){
       if(res.ok){
         res.json()
           .then(function(resData){
+              //Once item has been sent to backend, we can delete it
               deleteSingleItem('background-sync-posts', resData.id);
           })
          
@@ -199,6 +190,7 @@ self.addEventListener('notificationclick', function(event){
       //clients refers to all windows related to sw
       clients.matchAll()
         .then(function(clis){
+          
           var client = clis.find(function(element){
             return element.visibilityState ==='visible';
           });

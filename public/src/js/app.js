@@ -14,30 +14,36 @@ function closeDrawer() {
   d.MaterialLayout.toggleDrawer();
 }
 
+//If browser does not support promises, then we need to use the polyfill (promise.js)
 if (!window.Promise) {
   window.Promise = Promise;
 }
 
+//Check if serviceworker is supported by current browser
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/sw.js')
+    //use Promise because register event can take some time to complete
     .then(function () {
       console.log('Service worker registered!');
+      console.log('test');
     })
     .catch(function(err) {
       console.log(err);
     });
 }
 
+//Triggered by browser right before the install banner event
 window.addEventListener('beforeinstallprompt', function(event) {
-  console.log('beforeinstallprompt fired');
-  event.preventDefault();
+  event.preventDefault(); //Don't show banner
   deferredPrompt = event;
   return false;
 });
 
 
 //Notifications 
+
+//Function used to build the action of confirming a notification
 function displayConfirmNotification(){
   if('serviceWorker' in navigator){
     //not every device supports these different options but good to have incase they do work 
@@ -67,10 +73,12 @@ function pushSubscription(){
       reg = swreg;
       return swreg.pushManager.getSubscription();
     })
+    //Use another promise to start another process that can take time
     .then(function(sub){
         if(sub === null){
           //create a new subscription
           //key was geneated using web-push
+          //We generate key to make sure sender of notification is us (prevents others spamming)
           var vapidPublicKey = 'BMdfv8bb_SalzwEAxzQ8yhhMawESwiE1pXPxTO2fz8_CaC-M6RzTVUo4o6jZQsV36AVqTuW4o34B8r2CNsUl9L8';
           var convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
           return reg.pushManager.subscribe({
@@ -101,7 +109,6 @@ function pushSubscription(){
       .catch(function(err){
         console.log(err);
       })
-  
 };
 
 function askForNotificationPermission(){
