@@ -1,6 +1,6 @@
 {
   "name": "Scamming awareness platform",
-  "gcm_sender_id": "870146349479",
+  "gcm_sender_id": "dummyValue",
   "short_name": "StudentScams",
   "icons": [
     {
